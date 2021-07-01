@@ -35,7 +35,7 @@ def answer():
         message = re.sub(r'(\d{2,3})-\d+-\d+',r'\1-****-****, message')
         messages_html += '<div class="alert {1}" role="alert">{0}</div>\n'.format(message, 'alert-warnig ms-5' if i % 2 == 0 else 'alert-success me-5')
 
-        message = re.fullmatch(r'http(?s+)://(\w+)',r'<a href="http(?s+)://(\w+)">http://(\w+)</a>')
+        message = re.sub(r'((http|https)\://[a-zA-Z0-9-_^/?\:&=%+#.]+)',r'<a href="\1">\1</a>',messages)
 
     
     return render_template('vote.html', **vars())
